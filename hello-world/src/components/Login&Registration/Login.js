@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
+    
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -61,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SignInSide() {
   const classes = useStyles();
 
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -84,6 +85,7 @@ export default function SignInSide() {
               name="email"
               autoComplete="email"
               autoFocus
+            
             />
             <TextField
               variant="outlined"
