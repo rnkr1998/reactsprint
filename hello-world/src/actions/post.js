@@ -43,21 +43,22 @@ export const addAdvertaise = (advertaiseData = {
 
 
 
-const _getComplaint = (complaint) => ({
-    type: 'GET_COMPLAINT',
-    complaint
+const _getAdvertaise = (advertaise) => ({
+    type: 'GET_ADVERTAISE',
+    advertaise
 });
 
-export const getComplaints = () => {
+export const getAdvertaise = () => {
     return (dispatch) => {
-        return axios.get('complaint').then(result => {
-            const complaint = [];
+        return axios.get('farmer/getpost/all').then(result => {
+            const advertaise = [];
 
             result.data.forEach(item => {
-                complaint.push(item);
+                advertaise.push(item);
             });
 
-            dispatch(_getComplaint(complaint));
+            dispatch(_getAdvertaise(advertaise));
+            console.log("success");
         });
     };
 };

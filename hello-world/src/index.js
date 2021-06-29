@@ -10,17 +10,22 @@ import AddAdvertaise from './Service/Posts/AddAdvertaise';
 //import DefaultDashboard from './components/DefaultDashboard';
 //import Header from './components/Farmer/Header';
 //import Farmer from './components/Farmer/Farmer';
+import App from './Service/Complaints/ViewComplaint';
+import ViewComplaint from './Service/Complaints/ViewComplaint';
+import ViewOffer from './Service/Offers/ViewOffer';
+import ViewAdvertaise from './Service/Posts/ViewAdvertaise';
 import {createStore,applyMiddleware} from 'redux'
 import { Provider } from 'react-redux';
 import ComplaintReducer from './reducers/ComplaintReducer';
 import thunk from 'redux-thunk';
+import getStore from './store/store'
+//
+//<Provider store={store}><AddComplaint/><AddOffer/><AddAdvertaise/></Provider> 
 
-const store = createStore(ComplaintReducer, applyMiddleware(thunk));
-
+const store=getStore();
 ReactDOM.render(
   <React.StrictMode>
-<Provider store={store}><AddOffer/><AddAdvertaise/><AddComplaint/></Provider> 
-
+<Provider store={store}><ViewAdvertaise/></Provider> 
 </React.StrictMode>,
   document.getElementById('root')
 );

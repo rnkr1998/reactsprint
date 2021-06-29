@@ -1,5 +1,5 @@
 import axios from '../axios/axios';
-
+//import axios from 'axios';
 const _addComplaint = (complaint) => ({
     type: 'ADD_COMPLAINT',
     complaint
@@ -53,14 +53,20 @@ const _getComplaint = (complaint) => ({
 
 export const getComplaints = () => {
     return (dispatch) => {
-        return axios.get('complaint').then(result => {
-            const complaint = [];
+        return axios.get("/supplier/getcomplains/all").then(result => {
+        //.then(response => {
+           // return JSON.parse(response.data)
+       // })
+           const complaint = [];
+            
 
-            result.data.forEach(item => {
-                complaint.push(item);
-            });
+           result.data.forEach(item => {
+              complaint.push(item);
+           });
 
-            dispatch(_getComplaint(complaint));
+            dispatch(_getComplaint(result.data));
         });
     };
 };
+
+

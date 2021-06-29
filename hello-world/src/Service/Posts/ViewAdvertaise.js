@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {getComplaints} from '../../actions/complaint'
-//import {getUsers} from '../../actions/complaint'
+import {getAdvertaise} from '../../actions/post'
 
-import axios from 'axios';
- class ViewComplaint extends Component {
+
+
+ class ViewAdvertaise extends Component {
      
      constructor(props)
     
      {
          super(props);
-         this.props.getComplaints();
+         this.props.getAdvertaise();
          this.state=
          {
-             complaints:{}
+             posts:{}
          }
          
      }
@@ -21,17 +21,18 @@ import axios from 'axios';
        
      componentDidMount()
      {
-        this.setState({complaints:this.props.complaints});
+        this.setState({posts:this.props.posts});
      }
    
      
 
        
     render() {
-        const res = this.props.complaints;
+        console.log(this.props.posts);
+        const res = this.props.posts;
        // console.log(this.props.complaints);
        // console.log(res);
-        console.log(this.state.complaints);
+       // console.log(this.state.offers);
        // console.log(this.state.complaints);
      //   const res=this.props.complaints;
     
@@ -41,15 +42,15 @@ import axios from 'axios';
                 <h3>Data</h3>
             
                 
-             { res.map(data => {
+              { res.map(data => {
                 return (
-                    <ol key={data.complaintId}>
-                     <li> {data.complaintType}</li>  
-                     <li> {data.complaintMessage}</li>
-                     <li> {data.complaintOn}</li>
+                    <ol key={data.postId}>
+                     <li> {data.typeOfCrop}</li>  
+                     <li> {data.quantity}</li>
+                    
                     </ol>
                 );
-            })}  
+            })}   
         
                 <button onClick={this.handle}>Click Me</button>
                 <h1>hello world</h1>
@@ -58,6 +59,6 @@ import axios from 'axios';
     }
 }
 
-const mapStateToProps  = (state) => ({complaints:state.Complaint})
+const mapStateToProps  = (state) => ({posts:state.Post})
 
-export default connect(mapStateToProps, {getComplaints})(ViewComplaint)
+export default connect(mapStateToProps, {getAdvertaise})(ViewAdvertaise)

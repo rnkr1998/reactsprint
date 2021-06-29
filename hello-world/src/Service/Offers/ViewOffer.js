@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {getComplaints} from '../../actions/complaint'
-//import {getUsers} from '../../actions/complaint'
+import {getOffer} from '../../actions/offer'
 
-import axios from 'axios';
- class ViewComplaint extends Component {
+
+
+ class ViewOffer extends Component {
      
      constructor(props)
     
      {
          super(props);
-         this.props.getComplaints();
+         this.props.getOffer();
          this.state=
          {
-             complaints:{}
+             offers:{}
          }
          
      }
@@ -21,17 +21,18 @@ import axios from 'axios';
        
      componentDidMount()
      {
-        this.setState({complaints:this.props.complaints});
+        this.setState({offers:this.props.offers});
      }
    
      
 
        
     render() {
-        const res = this.props.complaints;
+        console.log(this.props.offers);
+        const res = this.props.offers;
        // console.log(this.props.complaints);
        // console.log(res);
-        console.log(this.state.complaints);
+       // console.log(this.state.offers);
        // console.log(this.state.complaints);
      //   const res=this.props.complaints;
     
@@ -41,15 +42,16 @@ import axios from 'axios';
                 <h3>Data</h3>
             
                 
-             { res.map(data => {
+              { res.map(data => {
                 return (
-                    <ol key={data.complaintId}>
-                     <li> {data.complaintType}</li>  
-                     <li> {data.complaintMessage}</li>
-                     <li> {data.complaintOn}</li>
+                    <ol key={data.productId}>
+                     <li> {data.productName}</li>  
+                     <li> {data.productPrice}</li>
+                     <li> {data.productQuantity}</li>
+                     <li> {data.farmingTips}</li>
                     </ol>
                 );
-            })}  
+            })}   
         
                 <button onClick={this.handle}>Click Me</button>
                 <h1>hello world</h1>
@@ -58,6 +60,6 @@ import axios from 'axios';
     }
 }
 
-const mapStateToProps  = (state) => ({complaints:state.Complaint})
+const mapStateToProps  = (state) => ({offers:state.Offer})
 
-export default connect(mapStateToProps, {getComplaints})(ViewComplaint)
+export default connect(mapStateToProps, {getOffer})(ViewOffer)

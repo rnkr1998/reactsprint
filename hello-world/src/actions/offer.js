@@ -54,21 +54,23 @@ export const addOffer = (offerData = {
 
 
 
-const _getComplaint = (complaint) => ({
-    type: 'GET_COMPLAINT',
-    complaint
+
+const _getOffer = (offer) => ({
+    type: 'GET_OFFER',
+    offer
 });
 
-export const getComplaints = () => {
+export const getOffer = () => {
     return (dispatch) => {
-        return axios.get('complaint').then(result => {
-            const complaint = [];
+        return axios.get('farmer/showoffer/all').then(result => {
+            const offer = [];
 
             result.data.forEach(item => {
-                complaint.push(item);
+                offer.push(item);
             });
 
-            dispatch(_getComplaint(complaint));
+            dispatch(_getOffer(offer));
+            console.log("success");
         });
     };
 };

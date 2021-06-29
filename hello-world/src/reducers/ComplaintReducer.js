@@ -1,6 +1,10 @@
-const complaintReducerDefaultState = [];
+const initialState = []
+    
 
-export default (state = complaintReducerDefaultState, action) => {
+
+   
+
+export default (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_COMPLAINT':
             return [
@@ -9,6 +13,7 @@ export default (state = complaintReducerDefaultState, action) => {
             ];
             case 'GET_COMPLAINT':
                 return action.complaint;
+                
             default:
                 return state;
         }

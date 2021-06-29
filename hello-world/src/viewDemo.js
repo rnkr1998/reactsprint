@@ -1,47 +1,40 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {getComplaints} from '../../actions/complaint'
-//import {getUsers} from '../../actions/complaint'
-
 import axios from 'axios';
  class ViewComplaint extends Component {
-     
-     constructor(props)
-    
+     state=
      {
-         super(props);
-         this.props.getComplaints();
-         this.state=
-         {
-             complaints:{}
-         }
-         
+        datas:[]
      }
-        
-       
-     componentDidMount()
-     {
-        this.setState({complaints:this.props.complaints});
-     }
-   
-     
 
-       
+
+     handle = async ()=>{
+
+
+        const  result =   await  axios.get('http://localhost:8080/api/supplier/getcomplains/all');
+ 
+              this.setState({datas:result.data});
+ 
+                
+ 
+         }
+    componentDidMount(){
+        this.props.getComplaints();
+        
+    }
     render() {
-        const res = this.props.complaints;
-       // console.log(this.props.complaints);
-       // console.log(res);
-        console.log(this.state.complaints);
-       // console.log(this.state.complaints);
-     //   const res=this.props.complaints;
-    
+        let res= this.state.datas;
+      //const[complaints]=this.props.complaint;
+//console.log(complaints);
+console.log(this.state.datas);
        
         return (
             <div>
                 <h3>Data</h3>
             
                 
-             { res.map(data => {
+            {res.map(data => {
                 return (
                     <ol key={data.complaintId}>
                      <li> {data.complaintType}</li>  
@@ -49,7 +42,7 @@ import axios from 'axios';
                      <li> {data.complaintOn}</li>
                     </ol>
                 );
-            })}  
+            })}
         
                 <button onClick={this.handle}>Click Me</button>
                 <h1>hello world</h1>
@@ -58,6 +51,7 @@ import axios from 'axios';
     }
 }
 
-const mapStateToProps  = (state) => ({complaints:state.Complaint})
+const mapStateToProps  = (state) => ({complaint
+    :state.complaint})
 
 export default connect(mapStateToProps, {getComplaints})(ViewComplaint)
