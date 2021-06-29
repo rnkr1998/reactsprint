@@ -20,14 +20,15 @@ export default class ComplaintForm extends React.Component {
         this.handleType = this.handleType.bind(this);
         this.handleMessage = this.handleMessage.bind(this);
         this.handleOn = this.handleOn.bind(this);
+        this.handleFarmer = this.handleFarmer.bind(this);
         this. handleSubmit = this. handleSubmit.bind(this);
       this.state=
       {
 
-            complaintType: props.complaints ? props.complaints.complaintType: '',
-            complaintOn: props.complaints ? props.complaints.complaintOn : '',
-            complaintMessage: props.complaints ? props.complaints.complaintMessage : '',
-
+            complaintType:'',
+            complaintOn:'',
+            complaintMessage:'',
+            farmerId:0,
             error: ''
         };
      
@@ -36,10 +37,16 @@ export default class ComplaintForm extends React.Component {
   }
 
 
-
+  handleFarmer(e)
+  {
+   
+    this.setState({farmerId:e.target.value});
+    console.log(this.state.farmerId);
+  }
 handleType(e)
 {
   this.setState({complaintType:e.target.value})
+  console.log(this.state.complaintType);
 }
 handleMessage(e)
 {
@@ -50,18 +57,22 @@ handleOn (e)
   this.setState({complaintOn:e.target.value})
 }
      handleSubmit (e) {
+      console.log("Hii");
       e.preventDefault();
+      console.log("Hello");
 
         if (!this.state.complaintType || !this.state.complaintOn || !this.state.complaintMessage) {
             this.setState(() => ({ error: 'Please enter valid values' }));
         } else {
             this.setState(() => ({ error: '' }));
-            console.log("click handler");
+           
             this.props.onSubmitComplaint(
                 {
                     complaintType: this.state.complaintType,
                     complaintMessage: this.state.complaintMessage,
                     complaintOn: this.state.complaintOn,
+                      farmerId:this.state.farmerId
+                    
                     
                 }
             );
@@ -74,36 +85,16 @@ handleOn (e)
   return (
       <div>
     {this.state.error && <p className='error'>{this.state.error}</p>}
-    <form onSubmit={this.handleSubmit} className='add-book-form'>
-
-<input type="text" placeholder="Type" autoFocus
-    value={this.state.complaintType}
-    onChange={this.handleType} />
-<br />
-
-<input type="text" placeholder="Message"
-    value={this.state.complaintMessage}
-    onChange={this.handleMessage} />
-<br />
-
-<textarea placeholder="On"
-    value={this.state.complaintOn}
-    onChange={this.handleOn} />
-<br />
-
-<button>Add Complaint</button>
-</form>
-
-
-   {/* <Container component="main" maxWidth="xs">
+   
+    <Container component="main" maxWidth="xs">
      <CssBaseline />
      
       
         
         <Typography component="h1" variant="h5" align="center">
-          Give Complaint
+          Complaint
          </Typography>
-         <form>
+         <form onSubmit={this.handleSubmit}>
            <TextField
             variant="outlined"
             margin="normal"
@@ -112,7 +103,7 @@ handleOn (e)
              id="cid"
              label="Type"
              name="complainttype"
-             value={this.state.complaintType}
+            value={this.state.complaintType}
             type="text"
             autoComplete="cid"
             onChange={this.handleType}
@@ -153,6 +144,22 @@ handleOn (e)
             
           
            />
+           <TextField
+            variant="outlined"
+             margin="normal"
+            required
+            fullWidth
+           id="bnum"
+          label="FarmerId"
+           name="FarmerId"
+           type="number"
+           defaultValue={this.state.farmerId}
+            onChange={this.handleFarmer}
+            autoComplete="bnum"
+            autoFocus
+            
+          
+           />
            
 
         
@@ -161,7 +168,7 @@ handleOn (e)
            fullWidth
              variant="contained"
              color="secondary"
-             onSubmit={(e) => onsubmit(e)}
+             
            >
              Post Complaint
           </Button>
@@ -171,7 +178,7 @@ handleOn (e)
        <Box mt={8}>   
        </Box>
      </Container>
-    */}
+    
  
 
   

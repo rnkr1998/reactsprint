@@ -9,15 +9,29 @@ export const addComplaint = (complaintData = {
     complaintType: '',
     complaintMessage: '',
     complaintOn: '',
+    farmer:{
+        farmerId:''
+    }
     
 }) => {
     return (dispatch) => {
-        console.log("post dispatch");
+    
+     
         const complaint = {
-          complaintType: complaintData.complaintType,
-          complaintMessage:complaintData.complaintMessage,
-          complaintOn: complaintData.complaintOn,
-        };
+ 
+            
+
+           complaintMessage: complaintData.complaintMessage,
+            complaintOn: complaintData.complaintOn,
+            complaintType: complaintData.complaintType,
+            farmer:
+            {
+                farmerId:complaintData.farmerId
+            }
+            
+
+            }
+          
 
         return axios.post('complain/add', complaint).then(result => {
             dispatch(_addComplaint(result.data));
