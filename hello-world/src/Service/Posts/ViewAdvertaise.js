@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {getAdvertaise} from '../../actions/post'
-
+import ViewCard  from './ViewCard';
+import Box from '@material-ui/core/Box';
 
 
  class ViewAdvertaise extends Component {
@@ -28,8 +29,8 @@ import {getAdvertaise} from '../../actions/post'
 
        
     render() {
-        console.log(this.props.posts);
         const res = this.props.posts;
+        console.log(res);
        // console.log(this.props.complaints);
        // console.log(res);
        // console.log(this.state.offers);
@@ -38,23 +39,14 @@ import {getAdvertaise} from '../../actions/post'
     
        
         return (
-            <div>
-                <h3>Data</h3>
-            
-                
-              { res.map(data => {
-                return (
-                    <ol key={data.postId}>
-                     <li> {data.typeOfCrop}</li>  
-                     <li> {data.quantity}</li>
-                    
-                    </ol>
-                );
-            })}   
-        
-                <button onClick={this.handle}>Click Me</button>
-                <h1>hello world</h1>
-            </div>
+            <Box display="flex" flexDirection="row" >
+            { res.map(data => (
+          
+                   <ViewCard key={data.postId} posts={data}/>
+              
+         
+            ))}  
+                   </Box>   
         )
     }
 }

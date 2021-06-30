@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {getComplaints} from '../../actions/complaint'
 //import {getUsers} from '../../actions/complaint'
-
-import axios from 'axios';
+import ViewCard  from './ViewCard';
+import Box from '@material-ui/core/Box';
  class ViewComplaint extends Component {
      
      constructor(props)
@@ -29,31 +29,24 @@ import axios from 'axios';
        
     render() {
         const res = this.props.complaints;
-       // console.log(this.props.complaints);
-       // console.log(res);
-        console.log(this.state.complaints);
-       // console.log(this.state.complaints);
-     //   const res=this.props.complaints;
+    
+     
     
        
         return (
-            <div>
-                <h3>Data</h3>
-            
-                
-             { res.map(data => {
-                return (
-                    <ol key={data.complaintId}>
-                     <li> {data.complaintType}</li>  
-                     <li> {data.complaintMessage}</li>
-                     <li> {data.complaintOn}</li>
-                    </ol>
-                );
-            })}  
-        
-                <button onClick={this.handle}>Click Me</button>
-                <h1>hello world</h1>
-            </div>
+           
+         
+                <Box display="flex">
+             { res.map(data => (
+           
+                    <ViewCard key={data.complaintId} complaint={data}/>
+               
+          
+             ))}  
+                    </Box>   
+    
+              
+          
         )
     }
 }

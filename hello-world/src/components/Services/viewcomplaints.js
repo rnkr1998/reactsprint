@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function viewcomplaints(props) {
+export default function Viewcomplaints(props) {
   const classes = useStyles();
   const { complaints } = props;
 
@@ -32,13 +32,13 @@ export default function viewcomplaints(props) {
           <div className={classes.cardDetails}>
             <CardContent>
               <Typography component="h2" variant="h5">
-                {complaints.title}
+                fss
               </Typography>
               <Typography variant="subtitle1" color="textSecondary">
-                {complaints.date}
+               fsfsfsf
               </Typography>
               <Typography variant="subtitle1" paragraph>
-                {complaints.description}
+               sfsf
               </Typography>
               <Typography variant="subtitle1" color="primary">
                 Continue reading...
@@ -54,6 +54,3 @@ export default function viewcomplaints(props) {
   );
 }
 
-FeaturedPost.propTypes = {
-  post: PropTypes.object,
-};

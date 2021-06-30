@@ -64,7 +64,7 @@ export const getComplaints = () => {
               complaint.push(item);
            });
 
-            dispatch(_getComplaint(result.data));
+            dispatch(_getComplaint(complaint));
         });
     };
 };

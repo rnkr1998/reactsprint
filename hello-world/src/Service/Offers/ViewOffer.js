@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {getOffer} from '../../actions/offer'
-
+import ViewCard  from './ViewCard';
+import Box from '@material-ui/core/Box';
 
 
  class ViewOffer extends Component {
@@ -37,25 +38,16 @@ import {getOffer} from '../../actions/offer'
      //   const res=this.props.complaints;
     
        
-        return (
-            <div>
-                <h3>Data</h3>
-            
-                
-              { res.map(data => {
-                return (
-                    <ol key={data.productId}>
-                     <li> {data.productName}</li>  
-                     <li> {data.productPrice}</li>
-                     <li> {data.productQuantity}</li>
-                     <li> {data.farmingTips}</li>
-                    </ol>
-                );
-            })}   
-        
-                <button onClick={this.handle}>Click Me</button>
-                <h1>hello world</h1>
-            </div>
+        return (  
+             
+                    <Box display="flex" flexDirection="row">
+                    { res.map(data => (
+                  
+                           <ViewCard key={data.productId} offer={data}/>
+                      
+                 
+                    ))}  
+                           </Box>   
         )
     }
 }
