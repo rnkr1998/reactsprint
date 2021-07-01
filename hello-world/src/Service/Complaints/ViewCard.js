@@ -31,11 +31,11 @@ const useStyles = makeStyles((theme) => ({
 
 const ViewCard=({complaint})=> {
   const classes = useStyles();
-  console.log(complaint);
 
   return (
-      <div className={classes.root}>
-      <Paper className={classes.paper} style={{ backgroundColor: '#ebe7e6'}}>
+    
+    
+      <Paper className={classes.paper} style={{ backgroundColor: '#ebe7e6',margin:'10px'}}>
      
                     
         <Grid container spacing={2} style={{ backgroundColor: '#f5f1f0'}}>
@@ -69,7 +69,7 @@ const ViewCard=({complaint})=> {
           </Grid>
         </Grid>
       </Paper>
-      </div>
+
 
   
   );

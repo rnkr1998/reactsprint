@@ -105,9 +105,10 @@ export default function DefaultDashboard() {
         
           </Typography>
           <nav>
-            <NavLink variant="button" color="textPrimary" exact to="/user/login" className={classes.link}>
+            <NavLink variant="button" color="textPrimary" exact to="/user/farmer" className={classes.link}>
               Farmer
             </NavLink>
+           
            
             <Link variant="button" color="textPrimary" href="#" className={classes.link}>
               Supplier
@@ -116,9 +117,9 @@ export default function DefaultDashboard() {
               Retailer
             </Link>
           </nav>
-          <Button href="#" color="primary" variant="outlined" className={classes.link}>
-            Login
-          </Button>
+          <NavLink color="textPrimary" variant="outlined" exact to="/user/login" className={classes.link}>
+              Login
+            </NavLink>
         </Toolbar>
       </AppBar>
       {/* Hero unit */}

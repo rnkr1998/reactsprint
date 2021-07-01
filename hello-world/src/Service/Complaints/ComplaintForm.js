@@ -57,9 +57,8 @@ handleOn (e)
   this.setState({complaintOn:e.target.value})
 }
      handleSubmit (e) {
-      console.log("Hii");
       e.preventDefault();
-      console.log("Hello");
+  
 
         if (!this.state.complaintType || !this.state.complaintOn || !this.state.complaintMessage) {
             this.setState(() => ({ error: 'Please enter valid values' }));

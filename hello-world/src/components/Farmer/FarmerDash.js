@@ -11,8 +11,25 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import Nav from './Nav';
+import {getFarmer} from '../../actions/farmer';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import {connect} from 'react-redux'
+import { NavLink } from 'react-router-dom';
+
+import {
+  
+  Card,
+  CardContent,
+
+  CardHeader
+} from "@material-ui/core/";
 import ViewComplaint from '../../Service/Complaints/ViewComplaint';
+import ViewOffer from '../../Service/Offers/ViewOffer';
+import ViewAdvertaise from '../../Service/Posts/ViewAdvertaise';
+import { makeStyles } from "@material-ui/core/styles";
+import { ShopTwoRounded } from '@material-ui/icons';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -27,8 +44,11 @@ function Copyright() {
 }
 
 const useStyles = makeStyles((theme) => ({
+
+ 
   root: {
     height: '100vh',
+    flexGrow: 1
   },
   image: {
     backgroundImage: 'url(https://source.unsplash.com/random)',
@@ -57,52 +77,80 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FarmerDash() {
-  const classes = useStyles();
+function FarmerDash(props) {
 
-  return (
-    <Grid container component="main" className={classes.root}>
-      <CssBaseline />
-   
-      <Grid item xs={false} sm={4} md={7}/>
-     
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+
+  const [state,setState]=useState(false);
+  const [item,setItem]=useState(false);
+
+
+  
+  const handlerOffer =(e) =>
+  {
+    e.preventDefault();
+       setState(false);
+       setItem(true);
+       console.log(state);
+       console.log(item);
       
+  }
+  const handlerPost =(e) =>
+  {
+    e.preventDefault();
+      setItem(false);
+       setState(true);
+      
+      
+  }
+  const classes = useStyles();  
+  return (
+ <div>
+   
+    
+   
+<Grid container component="main" className={classes.root} >    
+
+      <Grid item xs={6} sm={8} md={5} component={Paper} elevation={6} square>
+    
         <div className={classes.paper}>
-          
+       
+       
         <Avatar style={{ height: '100px', width: '100px' }}>
         
             </Avatar>
   
-            <ViewComplaint/>
           <Typography component="h1" variant="h5">
            Farmer Profile
           </Typography>
           <form className={classes.form} noValidate>
+
             <p>Farmer Id</p>
             <p>Farmer Name</p>
             <p>Farmer Age</p>
             <p>Farmer Number</p>
             <p>Farmer Address</p>
             <p>Farmer Email</p>
-
             
+           
+      
             <Button
-              type="submit"
+              type="button"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
+              to='/user/farmer/addcomplaint'
             >
               Post Complaint
             </Button>
 
             <Button
-              type="submit"
+              type="button"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={handlerPost}
             >
               View Advertisement
             </Button>
@@ -113,6 +161,7 @@ export default function FarmerDash() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={handlerOffer}
             >
               View Offer
             </Button>
@@ -121,7 +170,48 @@ export default function FarmerDash() {
             
           </form>
         </div>
-      </Grid>
-    </Grid>
+     
+        </Grid>
+      
+        <Grid item xs={3} sm={6} md={3}  container
+          spacing={2}
+        
+          justify="flex-start"
+          alignItems="flex-start">
+            
+</Grid>
+
+        <Grid item xs={3} sm={6} md={3}  container        
+          justify="flex-start"
+          alignItems="flex-start">
+
+         {
+       state?
+
+     <div>
+       <h1>Advertaisements</h1>
+     <ViewAdvertaise/>
+     </div>
+     :null
+    }
+
+     {
+       item?
+     <div>
+       <h1>Offers</h1>
+     <ViewOffer/>
+      </div>
+      :null
+    }
+
+
+
+        </Grid>
+        </Grid>
+        </div>
+    
   );
 }
+
+const mapStateToProps  = (state) => ({farmer:state.Farmer})
+export default connect(mapStateToProps, {getFarmer})(FarmerDash)

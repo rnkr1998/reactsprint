@@ -40,7 +40,7 @@ import Box from '@material-ui/core/Box';
        
         return (  
              
-                    <Box display="flex" flexDirection="row">
+            <Box display="flex" flexDirection= "row" flexWrap="wrap" md={12}>
                     { res.map(data => (
                   
                            <ViewCard key={data.productId} offer={data}/>
