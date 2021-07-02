@@ -163,10 +163,10 @@ const{
                 required
                 fullWidth
                 name="Phone"
-                label="phone"
-                type="number"
-                onChange={handleChange}
+                label="Phone"
+                type="text"
                 id="phone"
+                onChange={handleChange}
                 autoComplete="phone"
                 inputProps={{
                   pattern: "[789]{1}[0-9]{9}",

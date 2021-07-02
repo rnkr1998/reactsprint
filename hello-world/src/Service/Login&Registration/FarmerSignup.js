@@ -184,7 +184,7 @@ const [message,Setmessage] =useState('');
                 required
                 fullWidth
                 name="Phone"
-                label="phone"
+                label="Phone"
                 onChange={handleChange}
                 type="text"
                 id="phone"

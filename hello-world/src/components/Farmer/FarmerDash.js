@@ -150,7 +150,6 @@ console.log(data);
             <pre>  Farmer Name {data.farmerName}</pre>
             <pre>  Farmer Age :{data.farmerAge}</pre>
             <pre>  Farmer Number :{data.farmerNumber}</pre>
-            <pre>  Farmer Address :{data.famerAddress}</pre>
             <pre>  Farmer Email :{data.farmerEmail}</pre>
             
            
@@ -249,7 +248,7 @@ console.log(data);
        handleadd?
      <div  style={{backgroundColor:'white'}}>
       <Box display="flex" flexDirection="column" alignItems="stretch" padding={1} ></Box> 
-     <AddComplaint/>
+     <AddComplaint id={data.farmerId}/>
       </div>
       :null
     }

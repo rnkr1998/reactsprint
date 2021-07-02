@@ -135,6 +135,9 @@ export default function DefaultDashboard() {
       </AppBar>
       {/* Hero unit */}
       <Container maxWidth="sm" component="main" className={classes.heroContent} >
+        <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
+       Welcome To
+        </Typography>
         <Typography component="h3" variant="h3" align="center" color="textPrimary" gutterBottom>
        Farming Assistance System
         </Typography>
@@ -148,32 +151,6 @@ export default function DefaultDashboard() {
           <Grid container spacing={4}>
           
           <Grid item  xs={12}>
-                <Card className={classes.card} style={{backgroundColor:'#402f2e', color:'white',opacity:'0.8',borderRadius:'12px'}}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image={img}
-                    title="Supplier"
-                  />
-                  <CardContent className={classes.cardContent} style={{backgroundColor:'#5c4543'}}>
-                    <Typography gutterBottom variant="h4" component="h1" style={{color:"#c5d1db" }}>
-                      Supplier
-                    </Typography>
-                    <Typography>
-                    The suppliers who ever want to have any type of  grains,vegetables and fruits. They can post the advertise like they need some particular 
-                       type of item. which, will be notified to all the farmers whoever registered. In this way they can communicate and sell the required iteam
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" color="default" style={{color:"lightgray"}}>
-                      View
-                    </Button>
-                   
-                  </CardActions>
-                </Card>
-              </Grid>
-
-
-              <Grid item  xs={12}>
                 <Card className={classes.card}  style={{backgroundColor:'#402f2e', color:'white',opacity:'0.8',borderRadius:'12px'}}>
                   <CardMedia
                     className={classes.cardMedia}
@@ -194,9 +171,9 @@ export default function DefaultDashboard() {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" style={{color:"lightgray"}}>
-                      View
-                    </Button>
+                  <Typography size="small" color="default" style={{color:"lightgray"}}>
+                     @Fas-Farmer
+                    </Typography>
                    
                   </CardActions>
                 </Card>
@@ -205,8 +182,30 @@ export default function DefaultDashboard() {
 
 
 
-              
-         
+          <Grid item  xs={12}>
+                <Card className={classes.card} style={{backgroundColor:'#402f2e', color:'white',opacity:'0.8',borderRadius:'12px'}}>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image={img}
+                    title="Supplier"
+                  />
+                  <CardContent className={classes.cardContent} style={{backgroundColor:'#5c4543'}}>
+                    <Typography gutterBottom variant="h4" component="h1" style={{color:"#c5d1db" }}>
+                      Supplier
+                    </Typography>
+                    <Typography>
+                    The suppliers who ever want to have any type of  grains,vegetables and fruits. They can post the advertise like they need some particular 
+                       type of item. which, will be notified to all the farmers whoever registered. In this way they can communicate and sell the required item.
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Typography size="small" color="default" style={{color:"lightgray"}}>
+                     @Fas-Supplier
+                    </Typography>
+                   
+                  </CardActions>
+                </Card>
+              </Grid>
 
 
               <Grid item  xs={12}>
@@ -228,9 +227,9 @@ export default function DefaultDashboard() {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" style={{color:"lightgray"}}>
-                      View
-                    </Button>
+                  <Typography size="small" color="default" style={{color:"lightgray"}}>
+                     @Fas-Retailer
+                    </Typography>
                    
                   </CardActions>
                 </Card>

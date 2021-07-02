@@ -179,7 +179,7 @@ const{
                 required
                 fullWidth
                 name="Phone"
-                label="phone"
+                label="Phone"
                 type="text"
                 id="phone"
                 onChange={handleChange}

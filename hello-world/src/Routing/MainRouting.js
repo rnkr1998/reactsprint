@@ -44,9 +44,9 @@ import NotFound from '../components/NotFound';
 
 
 
-      <Route  exact path="/user/farmer/addcomplaint"  component={AddComplaint}/>
-      <Route  exact path="/user/supplier/addpost"  component={AddAdvertaise}/>
-      <Route  exact path="/user/retailer/addoffer"  component={AddOffer}/>
+      <Route  exact path="/user/addfarmer"  component={AddFarmer}/>
+      <Route  exact path="/user/addsupplier"  component={AddSupplier}/>
+      <Route  exact path="/user/addretailer"  component={AddRetailer}/>
 
 
   </Router>

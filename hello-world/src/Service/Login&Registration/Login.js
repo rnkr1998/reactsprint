@@ -139,6 +139,7 @@ constructor(props)
     }
     else if(this.state.user=='Retailer')
     {
+      console.log(this.state.retailer);
      for(var k in this.state.retailer) {
        if(this.state.email===this.state.retailer[k].retailerEmail)
        {
