@@ -46,8 +46,7 @@ const _getRetailer = (retailer) => ({
 
 export const getRetailer = () => {
     return (dispatch) => {
-        console.log("Reached here");
-        return axios.get("/retailer/getretailer/all").then(result => {
+        return axios.get("retailer/getretailer/all").then(result => {
         //.then(response => {
            // return JSON.parse(response.data)
        // })

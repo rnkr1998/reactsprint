@@ -14,6 +14,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {useState} from 'react';
 import { NavLink } from 'react-router-dom';
+import {Alert,AlertTitle} from '@material-ui/lab';
+import { withRouter } from 'react-router';
 
 function Copyright() {
   return (
@@ -48,9 +50,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SupplierSignUp(props) {
+function SupplierSignUp(props) {
   const classes = useStyles();
-
+  const [message,Setmessage] =useState('');
   const [state, setState] = useState({ fullName: "", Email: "" ,Password:"",Phone:""
 });
 
@@ -79,13 +81,15 @@ const{
           {
             supplierName: state.fullName,
             supplierEmail:state.Email,
-            supplierNumber: state.Phone,
-          
-              
+            supplierNumber: state.Phone,     
               
           }
       )
-  
+      Setmessage("Registered Successfully ,Login to Your Account!");
+      props.history.push({
+        pathname: '/user/login',
+        
+      })
   }
 
 
@@ -173,8 +177,9 @@ const{
         
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                control={<Checkbox value="allowExtraEmails" color="primary" required/>}
                 label="I Agree for Terms and Conditions."
+                required
               />
             </Grid>
           </Grid>
@@ -194,11 +199,14 @@ const{
                 </NavLink>
             </Grid>
           </Grid>
+          {message &&  <Alert severity="success"><AlertTitle>{message}</AlertTitle></Alert>}
         </form>
       </div>
       <Box mt={5}>
-        <Copyright />
+     
       </Box>
     </Container>
   );
 }
+
+export default withRouter(SupplierSignUp);

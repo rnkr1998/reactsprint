@@ -5,7 +5,7 @@ import { addFarmer } from '../../actions/farmer';
 
 const AddFarmer = (props) => (
    
-        <div>
+        <div >
         <FarmerSignUp
         onSubmitFarmer={(farmer) => {
                 props.dispatch(addFarmer(farmer));

@@ -17,7 +17,10 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import {connect} from 'react-redux'
 import { NavLink } from 'react-router-dom';
+import FarmerBG from './FarmerBG.jpeg';
 
+
+import AddComplaint from '../../Service/Complaints/AddComplaint';
 import {
   
   Card,
@@ -30,18 +33,7 @@ import ViewOffer from '../../Service/Offers/ViewOffer';
 import ViewAdvertaise from '../../Service/Posts/ViewAdvertaise';
 import { makeStyles } from "@material-ui/core/styles";
 import { ShopTwoRounded } from '@material-ui/icons';
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 const useStyles = makeStyles((theme) => ({
 
@@ -59,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: 'center',
   },
   paper: {
+    backgroundColor:' thistle',
     margin: theme.spacing(8, 4),
     display: 'flex',
     flexDirection: 'column',
@@ -82,26 +75,54 @@ function FarmerDash(props) {
 
   const [state,setState]=useState(false);
   const [item,setItem]=useState(false);
-
-
+  const [complaint,setComplaint]=useState(false);
+  const[handleadd,setHandleadd]=useState(false);
+ const [data,setData]=useState(props.location.state.data);
   
+
+ const handleAdd =(e)=>
+ {
+  e.preventDefault();
+  setComplaint(false);
+  setState(false);
+  setItem(false);
+  setHandleadd(true);
+ }
+
+
+
   const handlerOffer =(e) =>
   {
     e.preventDefault();
+       setComplaint(false);
        setState(false);
+       setHandleadd(false);
        setItem(true);
-       console.log(state);
-       console.log(item);
+    
+     
       
   }
   const handlerPost =(e) =>
   {
     e.preventDefault();
       setItem(false);
+       setComplaint(false);
+       setHandleadd(false);
        setState(true);
       
-      
   }
+
+  const handleComplaint =(e) =>
+  {
+    e.preventDefault();
+    setItem(false);
+       setState(false);
+       setHandleadd(false);
+       setComplaint(true);
+      
+
+  }
+console.log(data);
   const classes = useStyles();  
   return (
  <div>
@@ -110,7 +131,8 @@ function FarmerDash(props) {
    
 <Grid container component="main" className={classes.root} >    
 
-      <Grid item xs={6} sm={8} md={5} component={Paper} elevation={6} square>
+      <Grid item xs={6} sm={8} md={4} style={{backgroundColor: 'DarkCyan'
+      }} component={Paper} elevation={6} square>
     
         <div className={classes.paper}>
        
@@ -124,64 +146,81 @@ function FarmerDash(props) {
           </Typography>
           <form className={classes.form} noValidate>
 
-            <p>Farmer Id</p>
-            <p>Farmer Name</p>
-            <p>Farmer Age</p>
-            <p>Farmer Number</p>
-            <p>Farmer Address</p>
-            <p>Farmer Email</p>
+            <pre>  Farmer Id : {data.farmerId}</pre>
+            <pre>  Farmer Name {data.farmerName}</pre>
+            <pre>  Farmer Age :{data.farmerAge}</pre>
+            <pre>  Farmer Number :{data.farmerNumber}</pre>
+            <pre>  Farmer Address :{data.famerAddress}</pre>
+            <pre>  Farmer Email :{data.farmerEmail}</pre>
             
            
-      
-            <Button
+      <br/>
+
+      <p align="center">  <Button
               type="button"
-              fullWidth
+             
               variant="contained"
               color="primary"
               className={classes.submit}
-              to='/user/farmer/addcomplaint'
+              onClick={handleAdd}
             >
               Post Complaint
-            </Button>
+            </Button></p>
+           
 
-            <Button
+            <p align="center">  <Button
               type="button"
-              fullWidth
+             
               variant="contained"
               color="primary"
               className={classes.submit}
               onClick={handlerPost}
             >
               View Advertisement
-            </Button>
+            </Button></p>
 
-            <Button
+            <p align="center"> <Button
               type="submit"
-              fullWidth
+              
               variant="contained"
               color="primary"
               className={classes.submit}
               onClick={handlerOffer}
             >
               View Offer
-            </Button>
+            </Button></p>
             
+            <p align="center"> <Button
+              type="submit"
+              
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={handleComplaint}
+            >
+              Complaints
+            </Button></p>
             
             
           </form>
         </div>
      
         </Grid>
-      
+{/*       
         <Grid item xs={3} sm={6} md={3}  container
           spacing={2}
         
           justify="flex-start"
           alignItems="flex-start">
             
-</Grid>
+</Grid> */}
 
-        <Grid item xs={3} sm={6} md={3}  container        
+        <Grid item xs={3} sm={6} md={8} style={{backgroundImage: `url(${FarmerBG})`
+      , backgroundRepeat: 'no-repeat',
+      
+      backgroundSize: 'cover',
+      backgroundPosition: 'center'
+      }} container        
           justify="flex-start"
           alignItems="flex-start">
 
@@ -189,16 +228,37 @@ function FarmerDash(props) {
        state?
 
      <div>
-       <h1>Advertaisements</h1>
+       <Box display="flex" flexDirection="column" alignItems="stretch" padding={1} ><h1>Advertisements</h1></Box>
      <ViewAdvertaise/>
      </div>
      :null
     }
 
+{
+       complaint?
+
+     <div>
+       <Box display="flex" flexDirection="column" alignItems="stretch" padding={1} ><h1>Farmer Complaints</h1></Box>
+     <ViewComplaint/>
+     </div>
+     :null
+    }
+    
+
+    {
+       handleadd?
+     <div  style={{backgroundColor:'white'}}>
+      <Box display="flex" flexDirection="column" alignItems="stretch" padding={1} ></Box> 
+     <AddComplaint/>
+      </div>
+      :null
+    }
+
+
      {
        item?
      <div>
-       <h1>Offers</h1>
+      <Box display="flex" flexDirection="column" alignItems="stretch" padding={1} ><h1>Offers</h1></Box> 
      <ViewOffer/>
       </div>
       :null

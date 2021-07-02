@@ -13,7 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import CardMedia from '@material-ui/core/CardMedia';
 import farmer from './bodyimg.jpg';
-//import titleimg from './farmer.jpg';
+import img from './farmer.jpg';
 import farmer3 from './titleimg.png';
 
 
@@ -105,21 +105,32 @@ export default function DefaultDashboard() {
         
           </Typography>
           <nav>
-            <NavLink variant="button" color="textPrimary" exact to="/user/farmer" className={classes.link}>
-              Farmer
+          <NavLink  exact to="/user/addfarmer" style={{color:'white'}} >
+          <Button color="primary" variant="outlined" className={classes.link}>
+            Signup as Farmer
+          </Button>
             </NavLink>
            
-           
-            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-              Supplier
-            </Link>
-            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-              Retailer
-            </Link>
+            <NavLink  exact to="/user/addsupplier" style={{color:'white'}} >
+          <Button color="primary" variant="outlined" className={classes.link}>
+            Signup as Supplier
+          </Button>
+            </NavLink>
+
+            <NavLink  exact to="/user/addretailer" style={{color:'white'}} >
+          <Button color="primary" variant="outlined" className={classes.link}>
+            Signup as Retailer
+          </Button>
+            </NavLink>
           </nav>
-          <NavLink color="textPrimary" variant="outlined" exact to="/user/login" className={classes.link}>
-              Login
+         
+          <NavLink  exact to="/user/login" style={{color:'white'}} >
+          <Button  color="primary" variant="contained" className={classes.link}>
+            LOGIN
+          </Button>
             </NavLink>
+        
+  
         </Toolbar>
       </AppBar>
       {/* Hero unit */}
@@ -136,23 +147,54 @@ export default function DefaultDashboard() {
           {/* End hero unit */}
           <Grid container spacing={4}>
           
-              <Grid item  xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
+          <Grid item  xs={12}>
+                <Card className={classes.card} style={{backgroundColor:'#402f2e', color:'white',opacity:'0.8',borderRadius:'12px'}}>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image={img}
+                    title="Supplier"
+                  />
+                  <CardContent className={classes.cardContent} style={{backgroundColor:'#5c4543'}}>
+                    <Typography gutterBottom variant="h4" component="h1" style={{color:"#c5d1db" }}>
+                      Supplier
+                    </Typography>
+                    <Typography>
+                    The suppliers who ever want to have any type of  grains,vegetables and fruits. They can post the advertise like they need some particular 
+                       type of item. which, will be notified to all the farmers whoever registered. In this way they can communicate and sell the required iteam
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small" color="default" style={{color:"lightgray"}}>
+                      View
+                    </Button>
+                   
+                  </CardActions>
+                </Card>
+              </Grid>
+
+
+              <Grid item  xs={12}>
+                <Card className={classes.card}  style={{backgroundColor:'#402f2e', color:'white',opacity:'0.8',borderRadius:'12px'}}>
                   <CardMedia
                     className={classes.cardMedia}
                     image={farmer}
                     title="Farmer"
                   />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
+                  <CardContent className={classes.cardContent} style={{backgroundColor:'#5c4543'}}>
+                    <Typography gutterBottom variant="h4" component="h1" style={{color:"#c5d1db" }}>
                      Farmer
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe the content.
+                    Agriculture is the most important field off all the sectors. 
+                          For having the bread and butter we all are working hard to get it.
+                            But there is no sufficient provides r suppliers to work effectively and to communicate clearly.
+                          Hence to solve those type of problem we are implementing this application which will provide
+                          an effiective manner to help the farmer easily communicate with the retailer and the supplier.
+                          To give the support for the farmers in buying are selling the crops and tools required for them while farming this application is used.
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary">
+                    <Button size="small" style={{color:"lightgray"}}>
                       View
                     </Button>
                    
@@ -163,49 +205,30 @@ export default function DefaultDashboard() {
 
 
 
-              <Grid item  xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image={farmer}
-                    title="Supplier"
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Supplier
-                    </Typography>
-                    <Typography>
-                      This is a media card. You can use this section to describe the content.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" color="primary">
-                      View
-                    </Button>
-                   
-                  </CardActions>
-                </Card>
-              </Grid>
+              
          
 
 
-              <Grid item  xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
+              <Grid item  xs={12}>
+                <Card className={classes.card}  style={{backgroundColor:'#402f2e', color:'white',opacity:'0.8',borderRadius:'12px'}}>
                   <CardMedia
                     className={classes.cardMedia}
                     image={farmer}
                     title="Retailer"
                   />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
+                  <CardContent className={classes.cardContent} style={{backgroundColor:'#5c4543'}}>
+                    <Typography gutterBottom variant="h4" component="h1" style={{color:"#c5d1db" }}>
                     Retailer
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe the content.
+                    This application is useful to reatilers also they can sell the tools , fertilizers and pesticides it can be bio and chemical fertilizers.
+                        All the requirements for the farming they can sell. The retailer has other offer like they can post the offer of the particular product  and sell them.
+                       Which will be notified to the farmer while viewing the offers.
+                        
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary">
+                    <Button size="small" style={{color:"lightgray"}}>
                       View
                     </Button>
                    
@@ -218,10 +241,10 @@ export default function DefaultDashboard() {
 
        
       {/* Footer */}
-      <footer className={classes.footer}>
+      <footer className={classes.footer} style={{backgroundColor:'lightgrey',opacity:'0.95'}}>
 
         <Typography variant="h6" align="center" color="textSecondary" component="p" style={{fontWeight:'bold',color:'black'}}>
-    CopyRight@2021 developed using react
+    CopyRight@2021 FARMING ASSISTANT SYSTEM
         </Typography>
       
       </footer>

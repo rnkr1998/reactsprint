@@ -38,7 +38,7 @@ export const addSupplier = (supplierData = {
 
 
 const _getSupplier = (supplier) => ({
-    type: 'GET_RETAILER',
+    type: 'GET_SUPPLIER',
     supplier
 });
 

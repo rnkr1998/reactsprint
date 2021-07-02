@@ -12,7 +12,8 @@ function App()
   
     return(
         <div>
-        <h1>ht</h1>
+          {MainRouting}
+       
       </div>
     )
 }

@@ -12,11 +12,11 @@ export const addComplaint = (complaintData = {
     farmer:{
         farmerId:''
     }
-    
+   
 }) => {
     return (dispatch) => {
     
-     
+        
         const complaint = {
  
             
@@ -62,9 +62,11 @@ export const getComplaints = () => {
 
            result.data.forEach(item => {
               complaint.push(item);
+            
            });
 
             dispatch(_getComplaint(complaint));
+           
         });
     };
 };

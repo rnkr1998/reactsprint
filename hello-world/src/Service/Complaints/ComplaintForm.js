@@ -8,12 +8,13 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-
+import { withRouter } from 'react-router';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import {Alert,AlertTitle} from '@material-ui/lab';
 
-export default class ComplaintForm extends React.Component {
+class ComplaintForm extends React.Component {
   constructor(props)
   {
       super(props);
@@ -29,7 +30,8 @@ export default class ComplaintForm extends React.Component {
             complaintOn:'',
             complaintMessage:'',
             farmerId:0,
-            error: ''
+            error: '',
+            meessage:''
         };
      
        
@@ -75,6 +77,7 @@ handleOn (e)
                     
                 }
             );
+            this.setState({message:"Posted Succesfully!"})
         }
     }
   
@@ -85,7 +88,7 @@ handleOn (e)
       <div>
     {this.state.error && <p className='error'>{this.state.error}</p>}
    
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" >
      <CssBaseline />
      
       
@@ -171,7 +174,7 @@ handleOn (e)
            >
              Post Complaint
           </Button>
-          
+          {this.state.message &&  <Alert severity="success"><AlertTitle>{this.state.message}</AlertTitle></Alert>}
         </form>
       
        <Box mt={8}>   
@@ -187,3 +190,5 @@ handleOn (e)
 }
   
 }
+
+export default ComplaintForm;

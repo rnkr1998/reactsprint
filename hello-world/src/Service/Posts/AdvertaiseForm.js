@@ -9,12 +9,13 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-
+import {Alert,AlertTitle} from '@material-ui/lab';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { withRouter } from 'react-router';
 
-export default class OfferForm extends React.Component {
+class AdvertaiseForm extends React.Component {
   constructor(props)
   {
       super(props);
@@ -27,7 +28,8 @@ export default class OfferForm extends React.Component {
         typeOfCrop:'',
         quantity:'',
         supplierId:0,
-            error: ''
+            error: '',
+            message:''
         };
      
        
@@ -69,6 +71,7 @@ export default class OfferForm extends React.Component {
                     
                 }
             );
+            this.setState({message:"Posted Succesfully!"})
         }
     }
   
@@ -148,7 +151,7 @@ export default class OfferForm extends React.Component {
            >
              Post Advertaisement
           </Button>
-          
+          {this.state.message &&  <Alert severity="success"><AlertTitle>{this.state.message}</AlertTitle></Alert>}
         </form>
       
        <Box mt={8}>   
@@ -164,3 +167,5 @@ export default class OfferForm extends React.Component {
 }
   
 }
+
+export default AdvertaiseForm;

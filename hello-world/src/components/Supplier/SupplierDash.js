@@ -7,12 +7,29 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
+
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import SupplierBG from './SupplierBG.jpg';
+import {getFarmer} from '../../actions/farmer';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import {connect} from 'react-redux'
+import { NavLink } from 'react-router-dom';
+import Box from '@material-ui/core/Box'
+import AddAdvertaise from '../../Service/Posts/AddAdvertaise';
+import {
+  
+  Card,
+  CardContent,
 
+  CardHeader
+} from "@material-ui/core/";
+import ViewComplaint from '../../Service/Complaints/ViewComplaint';
+import ViewAdvertaise from '../../Service/Posts/ViewAdvertaise';
+import { makeStyles } from "@material-ui/core/styles";
+import { ShopTwoRounded } from '@material-ui/icons';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -27,11 +44,16 @@ function Copyright() {
 }
 
 const useStyles = makeStyles((theme) => ({
+
+ 
   root: {
     height: '100vh',
+ 
+    flexGrow: 1
   },
   image: {
-    //backgroundImage: 'url(https://source.unsplash.com/random)',
+    
+    backgroundImage: 'url(https://source.unsplash.com/random)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -39,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: 'center',
   },
   paper: {
+    backgroundColor:' thistle',
     margin: theme.spacing(8, 4),
     display: 'flex',
     flexDirection: 'column',
@@ -57,49 +80,163 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInSide() {
-  const classes = useStyles();
+function SupplierDash(props) {
 
+
+  const [state,setState]=useState(false);
+  const [item,setItem]=useState(false);
+  const [post,setPost]=useState(false);
+  const [data,setData]=useState(props.location.state.data);
+
+ 
+  const handleAdd =(e) =>
+  {
+    e.preventDefault();
+       setState(false);
+       setItem(false);
+       setPost(true);
+      
+  }
+  const handleComplaint =(e) =>
+  {
+    e.preventDefault();
+       setState(false);
+       setPost(false);
+       setItem(true);
+       
+      
+  }
+  const handlerPost =(e) =>
+  {
+    e.preventDefault();
+      setItem(false);
+      setPost(false);
+       setState(true);
+      
+      
+  }
+  const classes = useStyles();  
   return (
-    <Grid container component="main" className={classes.root}>
-      <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+ <div>
+   
+    
+   
+<Grid container component="main" className={classes.root} >    
+
+      <Grid item xs={6} sm={8} md={4}  style={{backgroundColor: 'DarkCyan'
+      }}
+      component={Paper} elevation={6} square>
+    
         <div className={classes.paper}>
-          
+       
+       
         <Avatar style={{ height: '100px', width: '100px' }}>
         
             </Avatar>
   
-
           <Typography component="h1" variant="h5">
-          Retailer Profile
+          Supplier Profile
           </Typography>
           <form className={classes.form} noValidate>
-            <p>Supplier Id</p>
-            <p>Supplier Name</p>
-            <p>Supplier Number</p>
-            <p>Supplier Email</p>
-            
 
+            <pre>  Supplier Id : {data.supplierId}</pre>
+            <pre>  Supplier Name : {data.supplierName}</pre>
+            <pre>  Supplier Number: {data.supplierNumber}</pre>
+            <pre>  Supplier Email : {data.supplierEmail}</pre>
             
-            <Button
-              type="submit"
-              fullWidth
+           
+      
+            <p align="center"><Button
+              type="button"
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={handleAdd}
             >
-              Post Advertisement
-            </Button>
+              Post Advertaisement
+            </Button></p>
 
-           
+            <p align="center"><Button
+              type="button"
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={handlerPost}
+            >
+              View Advertisement
+            </Button></p>
+
+            <p align="center"><Button
+              type="submit"
+             
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={handleComplaint}
+            >
+             Farmer Complaints
+            </Button></p>
             
             
             
           </form>
         </div>
-      </Grid>
-    </Grid>
+     
+        </Grid>
+{/*       
+        <Grid item xs={3} sm={6} md={3}  container
+          spacing={2}
+        
+          justify="flex-start"
+          alignItems="flex-start">
+            
+</Grid> */}
+
+        <Grid item xs={3} sm={6} md={8}  style={{backgroundImage: `url(${SupplierBG})`
+      , backgroundRepeat: 'no-repeat',
+      
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      }}   container        
+          justify="flex-start"
+          alignItems="flex-start">
+
+         {
+       state?
+
+     <div>
+      <Box display="flex" flexDirection="column" alignItems="stretch" padding={1} ><h1>Advertisements</h1></Box> 
+     <ViewAdvertaise/>
+     </div>
+     :null
+    }
+
+{state?
+
+<div style={{backgroundColor:'white'}}>
+ <Box display="flex" flexDirection="column" alignItems="stretch" padding={1} ></Box> 
+<AddAdvertaise id={data.supplierId}/>
+</div>
+:null
+}
+
+     {
+       item?
+     <div>
+       <h1>Complaints</h1>
+     <ViewComplaint/>
+      </div>
+      :null
+    }
+
+
+
+        </Grid>
+        </Grid>
+        </div>
+    
   );
 }
+
+const mapStateToProps  = (state) => ({farmer:state.Farmer})
+export default connect(mapStateToProps, {getFarmer})(SupplierDash)

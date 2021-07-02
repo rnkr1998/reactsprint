@@ -28,8 +28,8 @@ const ViewCard=({posts})=> {
 
 
   return (
-    <Card className={classes.root} style={{ backgroundColor: '#5c8696',margin:'10px'}}>
-      <CardActionArea>
+    <Card className={classes.root}  style={{ backgroundColor: '#77b5b5'}}>
+      <CardActionArea style={{ backgroundColor: '#77b5b5',margin:'5px'}}>
         <CardMedia
           component="img"
           alt="Contemplative Reptile"

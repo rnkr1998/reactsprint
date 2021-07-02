@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import {Link , NavLink} from "react-router-dom";
+import {Link , NavLink, withRouter} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -13,19 +13,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {useState} from 'react';
+import {Alert,AlertTitle} from '@material-ui/lab';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <button color="inherit" href="https://material-ui.com/">
-        Your Website
-      </button>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -47,10 +37,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FarmerSignup(props) {
+function FarmerSignup(props) {
   const [state, setState] = useState({ fullName: "", Email: "" ,Password:"",
   Age:"",Phone:"",Address:""
 });
+
 
 const{
   fullName,
@@ -62,6 +53,7 @@ const{
   
 } = state;
 
+const [message,Setmessage] =useState('');
 
 
   const handleChange = e => {
@@ -88,7 +80,11 @@ const{
               
           }
       )
-  
+      Setmessage("Registered Successfully ,Login to Your Account!");
+      props.history.push({
+        pathname: '/user/login',
+        
+      })
   }
 
 
@@ -100,9 +96,10 @@ const{
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" >
       <CssBaseline />
       <div className={classes.paper}>
+    
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
@@ -216,7 +213,7 @@ const{
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                control={<Checkbox value="allowExtraEmails" color="primary" required />}
                 label="I Agree for Terms and Conditions."
                 required
               />
@@ -238,11 +235,14 @@ const{
                 </NavLink>
             </Grid>
           </Grid>
+          {message &&  <Alert severity="success"><AlertTitle>{message}</AlertTitle></Alert>}
         </form>
       </div>
       <Box mt={5}>
-        <Copyright />
+    
       </Box>
     </Container>
   );
 }
+
+export default withRouter(FarmerSignup);

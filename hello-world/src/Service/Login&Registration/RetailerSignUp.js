@@ -17,6 +17,8 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import {useState} from 'react';
 import { NavLink } from 'react-router-dom';
+import {Alert,AlertTitle} from '@material-ui/lab';
+import { withRouter } from 'react-router';
 
 function Copyright() {
   return (
@@ -51,10 +53,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RetailerSignUp(props) {
+function RetailerSignUp(props) {
   const classes = useStyles();
 
-  
+  const [message,Setmessage] =useState('');
 
   const [category, setCategory] = React.useState("Select a category");
 
@@ -99,7 +101,11 @@ const{
               
           }
       )
-  
+      Setmessage("Registered Successfully ,Login to Your Account!");
+      props.history.push({
+        pathname: '/user/login',
+        
+      })
   }
 
   return (
@@ -200,8 +206,9 @@ const{
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                control={<Checkbox value="allowExtraEmails" color="primary" required/>}
                 label="I Agree for Terms and Conditions."
+                required
               />
             </Grid>
           </Grid>
@@ -221,11 +228,14 @@ const{
                 </NavLink>
             </Grid>
           </Grid>
+          {message &&  <Alert severity="success"><AlertTitle>{message}</AlertTitle></Alert>}
         </form>
       </div>
       <Box mt={5}>
-        <Copyright />
+    
       </Box>
     </Container>
   );
 }
+
+export default withRouter(RetailerSignUp);

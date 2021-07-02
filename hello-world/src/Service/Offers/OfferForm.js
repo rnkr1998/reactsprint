@@ -9,12 +9,12 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-
+import {Alert,AlertTitle} from '@material-ui/lab';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
-export default class OfferForm extends React.Component {
+import { withRouter } from 'react-router';
+class OfferForm extends React.Component {
   constructor(props)
   {
       super(props);
@@ -33,7 +33,8 @@ export default class OfferForm extends React.Component {
         productQuantity:'',
         farmingTips:'',
         retailerId:0,
-            error: ''
+            error: '',
+            message:''
         };
      
        
@@ -50,6 +51,7 @@ export default class OfferForm extends React.Component {
   }
   handleQuantity(e)
   {
+    console.log(this.props);
     this.setState({productQuantity:e.target.value});
   
   }
@@ -88,6 +90,7 @@ export default class OfferForm extends React.Component {
                     
                 }
             );
+            this.setState({message:"Posted Succesfully!"})
         }
     }
   
@@ -104,7 +107,7 @@ export default class OfferForm extends React.Component {
       
         
         <Typography component="h1" variant="h5" align="center">
-         Offer
+         Offer{this.props.Id}
          </Typography>
          <form onSubmit={this.handleSubmit}>
            <TextField
@@ -214,7 +217,7 @@ export default class OfferForm extends React.Component {
            >
              Post Offer
           </Button>
-          
+          {this.state.message &&  <Alert severity="success"><AlertTitle>{this.state.message}</AlertTitle></Alert>}
         </form>
       
        <Box mt={8}>   
@@ -230,3 +233,4 @@ export default class OfferForm extends React.Component {
 }
   
 }
+export default OfferForm;

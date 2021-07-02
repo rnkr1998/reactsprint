@@ -5,7 +5,7 @@ import { addComplaint } from '../../actions/complaint';
 import {ViewComplaint} from './ViewComplaint';
 const AddComplaint = (props) => (
    
-        <div>
+        <div >
         <ComplaintForm
         onSubmitComplaint={(complaints) => {
                 props.dispatch(addComplaint(complaints));
